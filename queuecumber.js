@@ -277,7 +277,8 @@
 				'type':        'GET',
 				'contentType': 'application/json',
 				'processData': false,
-				'url':         options.url
+				'url':         options.url,
+				'data':        options.data
 			});
 			params['headers'] = _.extend(params['headers'] || {}, {
 				'X-First-Requested':	parseInt(+new Date/1000),
