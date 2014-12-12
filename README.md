@@ -51,7 +51,7 @@ The API has only one public method: `queueCumber.add(model, params, options)`:
 
 * `model` is a Backbone model.
 * `params` is normally created by Backbone's `sync` method. It can contain everything a normal jQuery `ajax` call accepts. Keep in mind that this object will be serialized, so adding callback functions won't work. QueueCumber will assure that some properties are always present:
-```
+```javascript
 'type':        'GET',
 'contentType': 'application/json',
 'processData': false,
