@@ -14,8 +14,6 @@
 // success:  A request was completed successfully. Doesn't fire for GET.
 // error:    Take a guess... But DOES fire for GET.
 // removed:  When the user removes a request from the queue viewer.
-// loading:  When the queue send a request, and when it receives a request,
-//           it will fire this event.
 (function( exports ) {
 	var _localStorage;
 	try {
@@ -220,7 +218,7 @@
 				return false;
 			}
 			
-			this.trigger('execute');
+			this.trigger('execute', request, this);
 			this._ajax(model, params, _.extend({}, options, {
 				success: function() {
 					// Request succeeded, so it can be removed from the queue.
