@@ -18,27 +18,27 @@ Next, QueueCumber should be intergrated into Backbone. To do that, you'll have t
 
 ```javascript
 sync: function( method, model, options ) {
-    options || (options = {});
-    
-    var params = {
-        'type':     QueueCumber.methodMap[method],
-        'dataType': 'json'
-    };
-    
-    if( !options.url ) {
-        params['url'] = _.result(model, 'url');
-    }
-    
-    // Ensure that we have the appropriate request data.
-    if(
-        model && options.data == null &&
-        (method === 'create' || method === 'update' || method === 'patch')
-    ) {
-        params['data'] = JSON.stringify(options.attrs || model.toJSON(options));
-    }
-    
-    // `queueCumber` is a QueueCumber instance. 
-    queueCumber.add(model, params, options);
+  options || (options = {});
+  
+  var params = {
+    'type':     QueueCumber.methodMap[method],
+    'dataType': 'json'
+  };
+  
+  if( !options.url ) {
+    params['url'] = _.result(model, 'url');
+  }
+  
+  // Ensure that we have the appropriate request data.
+  if(
+    model && options.data == null &&
+    (method === 'create' || method === 'update' || method === 'patch')
+  ) {
+    params['data'] = JSON.stringify(options.attrs || model.toJSON(options));
+  }
+  
+  // `queueCumber` is a QueueCumber instance. 
+  queueCumber.add(model, params, options);
 }
 ```
 
@@ -51,15 +51,15 @@ The API has only one public method: `queueCumber.add(model, params, options)`:
 
 * `model` is a Backbone model.
 * `params` is normally created by Backbone's `sync` method. It can contain everything a normal jQuery `ajax` call accepts. Keep in mind that this object will be serialized, so adding callback functions won't work. QueueCumber will assure that some properties are always present:
-  ```
-  'type':        'GET',
-  'contentType': 'application/json',
-  'processData': false,
-  'url':         'http://url',
-  'data':        '{"json": true}',
-  'headers': {
-    'X-First-Requested': parseInt(+new Date/1000),
-    'X-Request-GUID':    guidString
-  }
-  ```
+```
+'type':        'GET',
+'contentType': 'application/json',
+'processData': false,
+'url':         'http://url',
+'data':        '{"json": true}',
+'headers': {
+  'X-First-Requested': parseInt(+new Date/1000),
+  'X-Request-GUID':    guidString
+}
+```
 * `options` is your usual Backbone options object. This object is not stored in localStorage, since it can contain non-scalar data (objects, functions). However, QueueCumber will store the `url` and `data` properties if you provide them.
