@@ -1,6 +1,8 @@
 QueueCumber
 ===========
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MapKit/QueueCumber?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 QueueCumber is a little library that tries to prevent data loss due to connection problems. Whenever the server returns an error, QueueCumber will hold on to the request and retry it until it succeeds. QueueCumber is configurable per request however, so this behavior can be changed. It's designed to work with Backbone, and ties in to its `sync` method.
 
 In modern browsers, stored requests will survive page refreshes because they are stored in localStorage.
